@@ -31,10 +31,23 @@
         <div class="app-button">hello</div>
       </div>
     </div>
-
+    
+    <div class="app-page dark-page" data-page="viewer">
+     <div class="app-topbar">
+       <div class="left app-button" data-back data-autotitle></div>
+       <div class="app-title">Viewer</div>
+     </div>
+        <div class="app-content"></div>
+</div>
+    
     <script src="zepto.js"></script>
     <script src="app.min.js"></script>
-    <script>
+    <script src="http://cdn.kik.com/photo-viewer/1/photo-viewer.js"></script>
+<script>
+      App.controller('viewer', function (page, data) {
+        var photoViewer = new PhotoViewer(page, data.urls);
+      });
+  
       App.controller('home', function (page) {
         this.transition = 'slide-up';
       });
@@ -48,6 +61,13 @@
       } catch (err) {
         App.load('home');
       }
+        App.load('viewer', {
+        urls: [
+        'http://i.imgur.com/yDK68Ff.jpg',
+        'http://i.imgur.com/rKIESYd.jpg',
+        'http://i.imgur.com/OTaodxO.jpg'
+      ]
+      });
     </script>
   </body>
 </html>
